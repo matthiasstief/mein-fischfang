@@ -1,0 +1,284 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
+    "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+
+<!--
+
+  Checkstyle configuration that checks the sun coding conventions from:
+
+    - the Java Language Specification at
+      http://java.sun.com/docs/books/jls/second_edition/html/index.html
+
+    - the Sun Code Conventions at http://java.sun.com/docs/codeconv/
+
+    - the Javadoc guidelines at
+      http://java.sun.com/j2se/javadoc/writingdoccomments/index.html
+
+    - the JDK Api documentation http://java.sun.com/j2se/docs/api/index.html
+
+    - some best practices
+
+  Checkstyle is very configurable. Be sure to read the documentation at
+  http://checkstyle.sf.net (or in your downloaded distribution).
+
+  Most Checks are configurable, be sure to consult the documentation.
+
+  To completely disable a check, just comment it out or delete it from the file.
+
+  Finally, it is worth reading the documentation.
+
+-->
+
+<module name="Checker">
+
+    <!-- Checks that a package.html file exists for each package.     -->
+    <!-- See http://checkstyle.sf.net/config_javadoc.html#PackageHtml -->
+    <!-- <module name="PackageHtml"/> -->
+
+    <!-- Checks whether files end with a new line.                        -->
+    <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
+    <!-- <module name="NewlineAtEndOfFile"/> -->
+
+    <!-- Checks that property files contain the same keys.         -->
+    <!-- See http://checkstyle.sf.net/config_misc.html#Translation -->
+    <module name="Translation"/>
+
+
+    <module name="TreeWalker">
+
+        <!-- Checks for Javadoc comments.                     -->
+        <!-- See http://checkstyle.sf.net/config_javadoc.html -->
+        <module name="JavadocMethod">
+            <property name="allowUndeclaredRTE" value="true"/>
+            <property name="allowThrowsTagsForSubclasses " value="true"/>
+        </module>
+        <module name="JavadocType">
+            <property name="authorFormat" value="^[\w ,;&amp;]{2,}$"/>
+        </module>
+        <module name="JavadocVariable">
+          <property name="excludeScope" value="private"/>
+        </module>
+        <module name="JavadocStyle">
+          <property name="checkFirstSentence" value="false" />
+        </module>
+
+
+        <!-- Checks for Naming Conventions.                  -->
+        <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <module name="ConstantName"/>
+        <module name="LocalFinalVariableName"/>
+        <module name="LocalVariableName"/>
+        <module name="MemberName"/>
+        <module name="MethodName"/>
+        <module name="PackageName"/>
+        <module name="ParameterName"/>
+        <module name="StaticVariableName"/>
+        <module name="TypeName">
+          <property name="format" value="^(DB|SQL){0,1}([A-Z][a-z0-9]+)*$"/>
+        </module>
+
+
+        <!-- Checks for imports                              -->
+        <!-- See http://checkstyle.sf.net/config_import.html -->
+        <module name="AvoidStarImport"/>
+        <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
+        <module name="RedundantImport"/>
+
+
+        <!-- Checks for Size Violations.                    -->
+        <!-- See http://checkstyle.sf.net/config_sizes.html -->
+        <!-- Modul "Filelength" ist von einem Check zu einem FileSetCheck geworden und darf nicht mehr unterhalb von "TreeWalker" eingesetzt werden.
+		<module name="FileLength">
+          <property name="max" value="3000"/>
+        </module>
+		-->
+        <module name="LineLength">
+          <property name="max" value="160"/>
+        </module>
+        <module name="MethodLength"/>
+        <module name="ParameterNumber">
+            <property name="max" value="10"/>
+        </module>
+
+
+        <!-- Checks for whitespace                               -->
+        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+        <module name="EmptyForIteratorPad"/>
+        <module name="MethodParamPad"/>
+        <module name="NoWhitespaceAfter"/>
+        <module name="NoWhitespaceBefore"/>
+        <module name="OperatorWrap"/>
+        <module name="ParenPad"/>
+        <module name="TypecastParenPad"/>
+       <!-- modul "TabCharacter ist durch "FileTabCharacter" ersetzt worden und darf nicht unterhalb von "TreeWalker" eingesetzt werden.
+       <module name="TabCharacter"/>
+       -->
+        <module name="WhitespaceAfter">
+          <property name="tokens" value="COMMA, TYPECAST"/>
+        </module>
+        <module name="WhitespaceAround">
+          <property name="tokens" 
+             value="ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, 
+                    BXOR, BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, EQUAL, GE, GT, LAND, 
+                    LE, LITERAL_ASSERT, LITERAL_CATCH, LITERAL_DO, 
+                    LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR, LITERAL_IF, 
+                    LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE, 
+                    LOR, LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, NOT_EQUAL, PLUS, 
+                    PLUS_ASSIGN, QUESTION, SL, SL_ASSIGN, SR, 
+                    SR_ASSIGN, STAR, STAR_ASSIGN,   
+                    TYPE_EXTENSION_AND, WILDCARD_TYPE" />
+        </module>
+
+
+        <!-- Modifier Checks                                    -->
+        <!-- See http://checkstyle.sf.net/config_modifiers.html -->
+        <module name="ModifierOrder"/>
+        <module name="RedundantModifier"/>
+
+
+        <!-- Checks for blocks. You know, those {}'s         -->
+        <!-- See http://checkstyle.sf.net/config_blocks.html -->
+        <module name="AvoidNestedBlocks"/>
+        <module name="EmptyBlock">
+           <property name="tokens" 
+                     value="LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, 
+                            LITERAL_IF, LITERAL_FOR, LITERAL_TRY, LITERAL_WHILE, 
+                            INSTANCE_INIT, STATIC_INIT" />
+        </module>
+        <module name="LeftCurly">
+           <property name="option" value="nl" />
+        </module>
+        <module name="NeedBraces">
+          <property name="tokens" value="LITERAL_WHILE, LITERAL_DO, LITERAL_FOR"/>
+        </module>
+        <module name="RightCurly">
+          <property name="option" value="alone  " />
+        </module>
+
+
+        <!-- Checks for common coding problems               -->
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <module name="EmptyStatement"/>
+        <module name="EqualsHashCode"/>
+        <module name="HiddenField"/>
+        <module name="IllegalInstantiation"/>
+        <module name="InnerAssignment"/>
+        <module name="MissingSwitchDefault"/>
+        <module name="RedundantThrows"/>
+        <module name="IllegalThrows">
+          <property name="illegalClassNames" value="java.lang.Throwable, java.lang.Error, java.lang.RuntimeException, java.lang.Exception"/>
+        </module>
+        <module name="SimplifyBooleanExpression"/>
+        <module name="SimplifyBooleanReturn"/>
+
+
+        <!-- Checks for class design                         -->
+        <!-- See http://checkstyle.sf.net/config_design.html -->
+        <module name="DesignForExtension"/>
+        <module name="FinalClass"/>
+        <module name="HideUtilityClassConstructor"/>
+        <module name="InterfaceIsType"/>
+        <module name="VisibilityModifier"/>
+
+
+        <!-- Miscellaneous other checks.                   -->
+        <!-- See http://checkstyle.sf.net/config_misc.html -->
+        <module name="ArrayTypeStyle"/>
+        <module name="FinalParameters">
+          <property name="tokens " value="CTOR_DEF" />
+        </module>
+		<!-- Checkstyle 5.0 GenericIllegalRegexp ist ersetzt worden durch RegexpSingleline RegexpMultiline und RegexpSinglelineJava -->
+        <!--
+		<module name="RegexpSingleline">
+            <property name="format" value="\s+$"/>
+            <property name="message" value="Line has trailing spaces."/>
+        </module>
+        -->
+		<module name="TodoComment">
+            <property name="severity" value="warning"/>
+            <property name="format" value="TODO"/>
+        </module>
+        <module name="UpperEll"/>
+        <!-- module name="SuppressWarnings"/ check not available in our current version -->
+
+        <!-- empty comment lines containing stars          -->
+		<!-- Checkstyle 5.0 GenericIllegalRegexp ist ersetzt worden durch RegexpSingleline RegexpMultiline und RegexpSinglelineJava -->
+        <!--
+		<module name='RegexpSingleline'>
+            <property name='format' value='^[\s]*/{1,2}[\s\*]*[\*]{5}[\s\*]*[/]{0,2}$'/>
+            <property name='message' value='Illegal Javadoc'/>
+        </module>
+        -->
+        <!-- output to System.out or System.err            -->
+		<!-- Checkstyle 5.0 GenericIllegalRegexp ist ersetzt worden durch RegexpSingleline RegexpMultiline und RegexpSinglelineJava -->
+        <!--
+		<module name='RegexpSingleline'>
+            <property name="severity" value="warning"/>
+            <property name='format' value='System\.(?:out|err)\.print'/>
+            <property name='message' value='Konsolenausgabe'/>
+        </module>
+        -->
+        <!-- stacktrace print to System.err                -->
+        <!-- Checkstyle 5.0 GenericIllegalRegexp ist ersetzt worden durch RegexpSingleline RegexpMultiline und RegexpSinglelineJava -->
+		<!--
+		<module name='RegexpSingleline'>
+            <property name="severity" value="warning"/>
+            <property name='format' value='\.printStackTrace\(\)'/>
+            <property name='message' value='Konsolenausgabe'/>
+        </module>
+        -->
+        <!-- fillInStackTrace in error logging            -->
+        <!-- Checkstyle 5.0 GenericIllegalRegexp ist ersetzt worden durch RegexpSingleline RegexpMultiline und RegexpSinglelineJava -->
+		<!--
+		<module name='RegexpSingleline'>
+            <property name="severity" value="error"/>
+            <property name='format' value='(?:fatal|error|info|warn|debug|trace)\([\p{Print}]*?\.fillInStackTrace\(\)\)'/>
+            <property name='message' value='fillInStackTrace should not be used as logging value - use complete cause exception instead'/>
+        </module>
+        -->
+    </module>
+	<module name="FileTabCharacter">
+	<property name="fileExtensions" value="java"/>
+	<!--       <property name="eachLine" value="true"/>  -->
+	</module>
+	<!-- Checks for Size Violations.                    -->
+    <!-- See http://checkstyle.sf.net/config_sizes.html -->
+    <module name="FileLength">
+          <property name="max" value="3000"/>
+	<property name="fileExtensions" value="java"/>
+    </module>
+	
+	<module name="RegexpSingleline">
+            <property name="format" value="\s+$"/>
+            <property name="message" value="Line has trailing spaces."/>
+    </module>
+	<!-- empty comment lines containing stars          -->
+	<module name='RegexpSingleline'>
+          <property name='format' value='^[\s]*/{1,2}[\s\*]*[\*]{5}[\s\*]*[/]{0,2}$'/>
+          <property name='message' value='Illegal Javadoc'/>
+		  <property name="fileExtensions" value="java"/>
+    </module>
+	<!-- output to System.out or System.err            -->
+	<module name='RegexpSingleline'>
+        <property name="severity" value="warning"/>
+        <property name='format' value='System\.(?:out|err)\.print'/>
+        <property name='message' value='Konsolenausgabe'/>
+        <property name="fileExtensions" value="java"/>
+	 </module>
+	<!-- stacktrace print to System.err                --> 
+	<module name='RegexpSingleline'>
+            <property name="severity" value="warning"/>
+            <property name='format' value='\.printStackTrace\(\)'/>
+            <property name='message' value='Konsolenausgabe'/>
+            <property name="fileExtensions" value="java"/>
+	</module>
+	<!-- fillInStackTrace in error logging            -->
+	<module name='RegexpSingleline'>
+            <property name="severity" value="error"/>
+            <property name='format' value='(?:fatal|error|info|warn|debug|trace)\([\p{Print}]*?\.fillInStackTrace\(\)\)'/>
+            <property name='message' value='fillInStackTrace should not be used as logging value - use complete cause exception instead'/>
+            <property name="fileExtensions" value="java"/>
+	</module>
+	
+</module>
