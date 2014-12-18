@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">Mein Fischfang</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-
+    <string name="tab_new_catch">Neuen Fang</string>
+    <string name="tab_catches">Meine Fänge</string>
+    <string name="tab_configuration">Einstellungen</string>
+    
 </resources>

@@ -1,12 +1,11 @@
 package de.mein_fischfang;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 
 /**
- * <b> Title:</b> MainActivity <br>
+ * <b>Title:</b> MainActivity <br>
  * <b>Description:</b> <br>
  * <b>Copyright:</b> Copyright (c) 2014 <br>
  * <b>Company:</b><br>
@@ -14,7 +13,7 @@ import android.view.MenuItem;
  * @author Matthias
  * @version 1.0.0
  */
-public class MainActivity extends ActionBarActivity
+public class MainActivity extends FragmentActivity
 {
 
     /**
@@ -26,37 +25,13 @@ public class MainActivity extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    /**
-     * onCreateOptionsMenu
-     *
-     * @param menu Menu
-     * @return boolean
-     */
-    public final boolean onCreateOptionsMenu(Menu menu)
-    {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    /**
-     * onOptionsItemSelected
-     *
-     * @param item MenuItem
-     * @return boolean
-     */
-    public final boolean onOptionsItemSelected(MenuItem item)
-    {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings)
+        if (savedInstanceState == null)
         {
-            return true;
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            SlidingTabsColorsFragment fragment = new SlidingTabsColorsFragment();
+            transaction.replace(R.id.sliding_content_fragment, fragment);
+            transaction.commit();
         }
-        return super.onOptionsItemSelected(item);
     }
 }
